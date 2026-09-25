@@ -22,6 +22,14 @@ if [ ! -f "$ICON" ]; then
     exit 1
 fi
 
+# Добавляем право на выполнение AppImage 
+if [ ! -x "$APPIMAGE" ]; then 
+echo "Добавляю право на запуск AppImage..." 
+chmod +x "$APPIMAGE" || { 
+    echo "Ошибка: не удалось сделать AppImage исполняемым." exit 1 
+} 
+fi
+
 LOG="/tmp/appimage-launcher.log"
 
 echo "Запускаю AppImage..."
